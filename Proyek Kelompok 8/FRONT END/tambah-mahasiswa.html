@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>IPB SEPEDA</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a class="title" href="dashboard.html">IPB SEPEDA</a>
+        </div>
+        <div class="user">
+            <a href="profile.html">
+                <img src="img/default.png" alt="Profile">
+            </a>
+        </div>
+    </header>
+    <aside>
+        <ul>
+            <li>
+                <a href="dashboard.html">
+                    <img src="icon/dashboard.png">
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href="mahasiswa.html">
+                    <img src="icon/user.png">
+                    <p>Daftar Mahasiswa</p>
+                </a>
+            </li>
+            <li>
+                <a href="peminjaman.html">
+                    <img src="icon/list.png">
+                    <p>Daftar Peminjaman</p>
+                </a>
+            </li>
+            <li>
+                <a href="sepeda.html">
+                    <img src="icon/bike.png">
+                    <p>Daftar Sepeda</p>
+                </a>
+            </li>
+            <li>
+                <a href="logout.php">
+                    <img src="icon/logout.png" alt="" srcset="">
+                    <p>Logout</p>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <div class="container">
+        <div class="tambah-box">
+            <h2>Tambah Mahasiswa</h2>
+            <form class="tambah-form" method="post">
+                <span>
+                    <label for="nim">NIM</label>
+                    <input type="text" name="nim" id="nim" required>
+                </span>
+                <span>
+                    <label for="mahasiswa">Nama Mahasiswa</label>
+                    <input type="text" name="mahasiswa" id="mahasiswa" required>
+                </span>
+                <span>
+                    <label for="fakultas">Fakultas</label>
+                    <input type="text" name="fakultas" id="fakultas" required>
+                </span>
+                <span>
+                    <label for="departemen">Departemen</label>
+                    <input type="text" name="departemen" id="departemen" required>
+                </span>
+                <span>
+                    <label for="alamat">Alamat</label>
+                    <input type="text" name="alamat" id="alamat" required>
+                </span>
+                <span>
+                    <label>Jenis Kelamin</label>
+                    <input type="radio" name="gender" class="gender" value="Laki-laki" required>Laki-laki
+                    <input type="radio" name="gender" class="gender" value="Perempuan" required>Perempuan
+                </span>
+                <span>
+                    <button type="submit" name="tambah" id="tambah">Tambah</button>
+                </span>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
