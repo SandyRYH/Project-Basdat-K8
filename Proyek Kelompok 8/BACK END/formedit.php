@@ -26,7 +26,7 @@ if(isset($_GET['id'])){
 
 	<form action="prosesedit.php" method="POST">
 		<fieldset>
-		<input type="hidden" name="id" value="<?=$id; ?>">
+		<input type="hidden" name="id" value="<?=$id?>">
 		<p>
 			<label for="nim">NIM:</label>
 			<input type="text" name="nim" value="<?=$nim?>" placeholder="NIM" />

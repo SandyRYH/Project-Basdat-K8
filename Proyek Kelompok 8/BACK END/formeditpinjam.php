@@ -6,10 +6,10 @@ if(isset($_GET['listid'])){
 
     $query = pg_query("SELECT * FROM listpinjam WHERE listid=$listid");
 	$siswa = pg_fetch_array($query);
-	$id = $_POST['id'];
-	$sepedaid = $_POST['sepedaid'];
-	$tglpinjam = $_POST['tglpinjam'];
-	$brgjaminan = $_POST['brgjaminan'];
+	$userid = $siswa['userid'];
+	$sepedaid = $siswa['sepedaid'];
+	$tglpinjam = $siswa['tglpinjam'];
+	$brgjaminan = $siswa['brgjaminan'];
 }
 ?>
 
@@ -27,7 +27,8 @@ if(isset($_GET['listid'])){
 	<form action="proseseditpinjam.php" method="POST">
     <fieldset>
 		<h4>Lengkapi form dibawah ini untuk melakukan peminjaman!</h4>
-
+		<input type="hidden" name="userid" value="<?=$userid?>">
+		<input type="hidden" name="listid" value="<?=$listid?>">
 		<p>
 			<label for="tipesepeda">Tipe Sepeda:</label>
 			<label><input type="radio" name="tipesepeda" value="Sierra"> Sierra</label>
