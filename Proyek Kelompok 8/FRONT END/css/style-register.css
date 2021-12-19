@@ -21,7 +21,7 @@ a:hover {
     height: 360px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    background-color: var(--secondary);
+    background-color: white;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     font-size: 14px;
     position: absolute;
@@ -62,29 +62,14 @@ input[type="password"] {
     text-align: center;
 }
 
-.remember-box {
-    margin-top: -5px;
-    margin-bottom: 10px;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-label[for="remember-register"] {
-    margin-left: 5px;
-    font-size: 12px;
-}
-
-input[type="submit"] {
+button[type="submit"] {
     padding: 7px;
     width: 125px;
     border: 2px solid black;
     border-radius: 24px;
     box-sizing: border-box;
     background: black;
-    color: var(--secondary);
+    color: white;
     font-size: 14px;
     font-weight: bold;
     outline: none;
@@ -105,7 +90,7 @@ input[type="submit"]:hover {
 }
 
 .login-box {
-    margin: 10px auto;
+    margin: 25px auto;
     display: flex;
     justify-content: center;
 }
