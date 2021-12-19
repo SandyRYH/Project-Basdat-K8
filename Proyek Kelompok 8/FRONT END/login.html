@@ -16,17 +16,14 @@
         <div class="title-box">
             <h1>Login</h1>
         </div>
-        <form id="login-form" action="index.html" method="post">
+        <form id="login-form" method="post">
+            <p class="error-text">Username atau password salah</p>
             <input type="username" name="username-login" id="username-login" placeholder="Username" required>
             <input type="password" name="password-login" id="password-login" placeholder="Kata Sandi" required>
-            <span class="remember-box">
-                <input type="checkbox" name="remember-login" id="remember-login">
-                <label for="remember-login">Remember me</label>
-            </span>
-            <input type="submit" name="login" id="login" value="Masuk">
+            <button type="submit" name="login" id="login">Masuk</button>
         </form>
         <div class="register-box">
-            <a href="register.html">Register?</a>
+            <a href="register.php">Daftar Admin?</a>
         </div>
     </div>
 </body>

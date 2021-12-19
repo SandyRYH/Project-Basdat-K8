@@ -1,125 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Peminjaman Sepeda</title>
+    <title>IPB SEPEDA</title>
 </head>
+
 <body>
     <header>
         <div>
-            <h1>
-                <a href="index.html">IPB SEPEDA</a>
-            </h1>
+            <a class="title" href="dashboard.html">IPB SEPEDA</a>
         </div>
         <div class="user">
             <a href="profile.html">
-                <img src="img/default.png" alt="">
+                <img src="img/default.png" alt="Profile">
             </a>
         </div>
     </header>
     <aside>
         <ul>
-            <li><a href="index.html">Dashboard</a></li>
-            <li><a href="peminjaman.html">Daftar Peminjaman</a></li>
-            <li><a href="mahasiswa.html">Daftar Mahasiswa</a></li>
-            <li><a href="sepeda.html">Daftar Sepeda</a></li>
+            <li>
+                <a href="dashboard.html">
+                    <img src="icon/dashboard.png">
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href="mahasiswa.html">
+                    <img src="icon/user.png">
+                    <p>Daftar Mahasiswa</p>
+                </a>
+            </li>
+            <li>
+                <a href="peminjaman.html">
+                    <img src="icon/list.png">
+                    <p>Daftar Peminjaman</p>
+                </a>
+            </li>
+            <li>
+                <a href="sepeda.html">
+                    <img src="icon/bike.png">
+                    <p>Daftar Sepeda</p>
+                </a>
+            </li>
+            <li>
+            <a href="logout.php">
+                <img src="icon/logout.png" alt="" srcset="">
+                <p>Logout</p>
+            </a>
+            </li>
         </ul>
-        <span>
-            <a href="login.html">Logout</a>
-        </span>
     </aside>
     <div class="container">
-        <div class="article-title">
-            <h2>Dashboard</h2>
-        </div>
-        <div class="article">
-            <h3>A. Armada</h3>
-            <div>
-                <p>Kampus IPB sudah sejak lama membudayakan untuk bersepeda dalam kampus. Dari bantuan berbagai pihak  IPB memiliki lebih dari 700 sepeda yang dapat digunakan sebagai sarana transportasi dalam kampus setiap harinya.</p>
-                <p>Jenis sepeda yang ada pun bermacam-macam, ada jenis sepeda yang memiliki keranjang untuk menaruh barang dan sangat nyaman digunakan oleh kaum hawa seperti sierra dan vista, namun ada juga sepeda moutain bike ataupun heist yang secara fisik lebih besar dan disukai pengguna laki-laki ataupun umum. Total terdapat 8 jenis sepeda yang dioperasikan oleh tim green transportation.</p>
-            </div>
-            <h3>B. Operasional</h3>
-            <div>
-                <p>Sistem bike sharing beroperasi dari jam 06.00 – 20.00 WIB pada kondisi normal dengan peminjaman terakhir pada pukul 18.00 WIB. Hari operasional adalah hari senin-minggu kecuali hari libur kampus dan libur nasional.</p>
-                <p>Peminjaman sepeda dapat dilakukan di 10 halte sepeda yang tersebar di berbagai titik dan dapat dilihat disini. Peminjam perlu memberikan KTM atau Kartu identitas lainnya sebagai jaminan saat peminjaman sepeda tersebut. Pengembalian sepeda untuk saat ini hanya dapat dilakukan di shelter yang sama tempat ia meminjam.</p>
-                <p>Peminjam dapat menggunakan sepeda selama dalam jam operasional di kawasan kampus IPB Dramaga. Selama peminjaman Sepeda merupakan tanggung jawab peminjam sehingga perlu menyediakan kunci sepeda jika ingin memarkirkan sepeda ditempat umum.</p>
-                <p>Sebagai sarana penunjang penggunaan sepeda, telah terdapat berbagai fasilitas khusus sepeda seperti parkiran dan juga jalur khusus sepeda baik yang dedicated maupun yang masih mix traffic.</p>
-                <p>Saat ini juga sedang dikembangkan applikasi online untuk mempermudah proses peminjaman sepeda dan membuka kemungkinan untuk mengembalikan sepeda di shelter yang berbeda.</p>
-            </div>
-            <h3>C. Pembayaran</h3>
-            <div>
-                <p>Mahasiswa, dosen, dan pegawai IPB dapat menggunakan sepeda kampus dan tidak dipungut biaya.</p>
-            </div>
-            <h3>D. Peminjaman Khusus</h3>
-            <div>
-                <p>Sepeda dapat dipinjam secara khusus untuk penggunaan kegiatan dalam kampus IPB, namun perlu diketahui bahwa adanya keterbatasan unit yang dapat dipinjamkan terutama pada hari operasional normal. Bagi yang ingin melakukan peminjaman khusus dapat mengajukan surat peminjaman ke Unit Transportasi Kampus di seberang asrama putra. Pengajuan peminjaman diharuskan sudah masuk 1 (satu) Minggu sebelum hari peminjaman.</p>
-            </div>
-            <!-- <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>List ID</th>
-                        <th>User ID</th>
-                        <th>Sepeda ID</th>
-                        <th>Tanggal Peminjaman</th>
-                        <th>Check</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                    </tr>
-                    <tr>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                    </tr>
-                    <tr>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                    </tr>
-                    <tr>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                    </tr>
-                    <tr>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                        <td>Action</td>
-                    </tr>
-                </tbody>
-            </table> -->
-        </div>
+
+
     </div>
 </body>
+
 </html>
