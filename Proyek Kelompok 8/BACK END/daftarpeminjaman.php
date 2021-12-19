@@ -13,19 +13,20 @@
 	</header>
 
 	<nav>
-		<a href="formpeminjaman.php">[+] Tambah Baru</a>
+		<a href="daftardatadiri.php">Lihat data diri</a>
 	</nav>
 
 	<br>
 
-	<table border="1">
+	<table border="2">
 	<thead>
 		<tr>
 			<th>List ID</th>
 			<th>User ID</th>
-			<th>Sepeda</th>
+			<th>ID Sepeda</th>
 			<th>Tanggal Peminjaman</th>
-			<th>Barang Jaminan </th>
+			<th>Barang Jaminan</th>
+			<th>Tindakan</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -43,6 +44,13 @@
 			echo "<td>".$siswa['sepedaid']."</td>";
 			echo "<td>".$siswa['tglpinjam']."</td>";
 			echo "<td>".$siswa['brgjaminan']."</td>";
+
+			echo "<td>";
+			echo "<a href='hapuspinjam.php?listid=".$siswa['listid']."'>Hapus</a> | ";
+
+			echo "<a href='formeditpinjam.php?listid=".$siswa['listid']."'>Edit</a> ";
+            
+			echo "</td>";
 			}
 
 		?>
@@ -51,6 +59,8 @@
 	</table>
 
 	<p>Total: <?php echo pg_num_rows($query) ?></p>
+
+	<a href="index.php">Back to Home</a>
 
 	</body>
 </html>

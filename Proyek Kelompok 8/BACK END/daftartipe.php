@@ -18,7 +18,7 @@
 
 	<br>
 
-	<table border="1">
+	<table border="2">
 	<thead>
 		<tr>
 			<th>ID Tipe</th>
@@ -49,6 +49,7 @@
 	</table>
 
 	<p>Total Sepeda: <?php echo pg_num_rows($query) ?></p>
+	<a href="index.php">Back to Home</a>
 
 	</body>
 </html>

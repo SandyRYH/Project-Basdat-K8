@@ -18,7 +18,7 @@
 
 	<br>
 
-	<table border="1">
+	<table border="2">
 	<thead>
 		<tr>
 			<th>ID</th>
@@ -63,6 +63,8 @@
 	</table>
 
 	<p>Total: <?php echo pg_num_rows($query) ?></p>
+
+	<a href="index.php">Back to Home</a>
 
 	</body>
 </html>

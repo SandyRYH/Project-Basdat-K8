@@ -40,7 +40,7 @@ if(isset($_GET['id'])){
 			<input type="text" name="departemen" value="<?=$departemen?>" placeholder="departemen" />
 		</p>
 		<p>
-			<label for="fakultas">ID Sepeda: </label>
+			<label for="fakultas">Fakultas: </label>
 			<select name="fakultas">  
 			<option value="Select">Pilih--</option>}  
 			<option value="Faperta">Faperta</option>  

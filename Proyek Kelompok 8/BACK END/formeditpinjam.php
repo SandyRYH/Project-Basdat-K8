@@ -1,48 +1,32 @@
 <?php
 include("config.php");
 
-if(isset($_GET['id'])){
-	$id = $_GET['id'];
+if(isset($_GET['listid'])){
+	$listid = $_GET['listid'];
 
-	$query = pg_query("SELECT * FROM peminjam WHERE id = $id");
+    $query = pg_query("SELECT * FROM listpinjam WHERE listid=$listid");
 	$siswa = pg_fetch_array($query);
-	$nim = $siswa['nim'];
-	$nama = $siswa['nama'];
-	$departemen = $siswa['departemen'];
-	$fakultas = $siswa['fakultas'];
+	$id = $_POST['id'];
+	$sepedaid = $_POST['sepedaid'];
+	$tglpinjam = $_POST['tglpinjam'];
+	$brgjaminan = $_POST['brgjaminan'];
 }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Formulir Peminjaman Sepeda</title>
+	<title>Formulir Edit Data Peminjaman</title>
 </head>
 
 <body>
 	<header>
-		<h3>Formulir Peminjaman Sepeda IPB</h3>
+		<h3>Edit Data Peminjaman</h3>
 	</header>
 
-	<form action="prosespeminjaman.php" method="POST">
-		<fieldset>
-		<h4>Data Diri Mahasiswa Peminjam</h4>
-		<input type="hidden" name="id" value="<?=$id; ?>">
-		<p>
-			<label for="nim">NIM: <?=$nim?></label>
-		</p>
-		<p>
-			<label for="nama">Nama: <?=$nama?></label>
-		</p>
-		<p>
-			<label for="departemen">Departemen: <?=$departemen?> </label>
-		</p>
-		<p>
-			<label for="fakultas">Fakultas: <?=$fakultas?> </label>
-		</p>
-
+	<form action="proseseditpinjam.php" method="POST">
+    <fieldset>
 		<h4>Lengkapi form dibawah ini untuk melakukan peminjaman!</h4>
-		<a href="daftarsepeda.php">Lihat Daftar Sepeda</a>
 
 		<p>
 			<label for="tipesepeda">Tipe Sepeda:</label>
@@ -54,16 +38,16 @@ if(isset($_GET['id'])){
 			<label for="sepedaid">ID Sepeda: </label>
 			<select name="sepedaid">  
 			<option value="Select">Pilih--</option>}  
-			<option value="S001">S001</option>
-			<option value="S002">S002</option>
-			<option value="S003">S003</option>
-			<option value="S004">S004</option> 
-			<option value="S005">S005</option>
 			<option value="V001">V001</option>  
 			<option value="V002">V002</option>  
 			<option value="V003">V003</option>  
 			<option value="V004">V004</option>  
 			<option value="V005">V005</option>
+			<option value="S001">S001</option>
+			<option value="S002">S002</option>
+			<option value="S003">S003</option>
+			<option value="S004">S004</option> 
+			<option value="S005">S005</option>
 			<option value="M001">M001</option>
 			<option value="M002">M002</option>
 			<option value="M003">M003</option>
@@ -81,7 +65,7 @@ if(isset($_GET['id'])){
 			<input type="text" name="brgjaminan" placeholder="isi dengan link google drive" />
 		</p>
 		<p>
-			<input type="submit" value="Pinjam" name="pinjam" />
+			<input type="submit" value="Edit" name="edit" />
 		</p>
 		</fieldset>
 	</form>

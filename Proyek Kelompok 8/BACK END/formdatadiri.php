@@ -23,7 +23,6 @@
 			<label for="departemen">Departemen: </label>
 			<input type="text" name="departemen" placeholder="Tulis Departemenmu" />
 		</p>
-
 		<p>
 			<label for="fakultas">Fakultas: </label>
 			<select name="fakultas">  
@@ -46,6 +45,7 @@
 		</p>
 		</fieldset>
 	</form>
-
+	<br>
+	<a href="index.php">Back to Home</a>
 	</body>
 </html>
