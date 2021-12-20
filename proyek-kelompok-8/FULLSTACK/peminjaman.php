@@ -55,7 +55,7 @@ if (isset($_GET["id"])) {
 					<td><?= $pmj['jenis_sepeda']; ?></td>
 					<td><?= $pmj['tanggal_meminjam']; ?></td>
 					<?php if ((isset($_SESSION["username"]))) : ?>
-						<td><a href="index.php?page=peminjaman&id=<?= $pmj['id']; ?>&mahasiswa=<?= $pmj['mahasiswa']; ?>&jenis=<?= $pmj['jenis_sepeda']; ?>&kode=<?= $pmj['kode_sepeda']; ?>&tgl=<?= $pmj['tanggal_meminjam']; ?>">Kembailkan</a></td>
+						<td><a href="index.php?page=peminjaman&id=<?= $pmj['id']; ?>&mahasiswa=<?= $pmj['mahasiswa']; ?>&jenis=<?= $pmj['jenis_sepeda']; ?>&tgl=<?= $pmj['tanggal_meminjam']; ?>">Kembailkan</a></td>
 					<?php endif; ?>
 				</tr>
 			<?php endwhile; ?>
