@@ -42,7 +42,6 @@ if (isset($_GET["id"])) {
 				<th>No.</th>
 				<th>Mahasiswa</th>
 				<th>Jenis Sepeda</th>
-				<th>Kode Sepeda</th>
 				<th>Tanggal Peminjaman</th>
 				<?php if ((isset($_SESSION["username"]))) : ?>
 					<th>Aksi</th>
@@ -55,38 +54,10 @@ if (isset($_GET["id"])) {
 					<td><?= $pmj['id']; ?></td>
 					<td><?= $pmj['mahasiswa']; ?></td>
 					<td><?= $pmj['jenis_sepeda']; ?></td>
-					<td><?= $pmj['kode_sepeda']; ?></td>
 					<td><?= $pmj['tanggal_meminjam']; ?></td>
 					<?php if ((isset($_SESSION["username"]))) : ?>
-						<td><a href="index.php?page=peminjaman&id=<?= $pmj['id']; ?>&mahasiswa=<?= $pmj['mahasiswa']; ?>&jenis=<?= $pmj['jenis_sepeda']; ?>&kode=<?= $pmj['kode_sepeda']; ?>&tgl=<?= $pmj['tanggal_meminjam']; ?>"><img src="icon/checked.png"></a></td>
+						<td><a href="index.php?page=peminjaman&id=<?= $pmj['id']; ?>&mahasiswa=<?= $pmj['mahasiswa']; ?>&jenis=<?= $pmj['jenis_sepeda']; ?>&kode=<?= $pmj['kode_sepeda']; ?>&tgl=<?= $pmj['tanggal_meminjam']; ?>">Kembailkan</a></td>
 					<?php endif; ?>
-				</tr>
-			<?php endwhile; ?>
-		</tbody>
-	</table>
-</div>
-<div class="table-box">
-	<h2>History</h2>
-	<table>
-		<thead>
-			<tr>
-				<th>No.</th>
-				<th>Mahasiswa</th>
-				<th>Jenis Sepeda</th>
-				<th>Kode Sepeda</th>
-				<th>Tanggal Peminjaman</th>
-				<th>Tanggal Pengembalian</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php while ($hsr = pg_fetch_assoc($history)) : ?>
-				<tr>
-					<td><?= $hsr['id']; ?></td>
-					<td><?= $hsr['mahasiswa']; ?></td>
-					<td><?= $hsr['jenis_sepeda']; ?></td>
-					<td><?= $hsr['kode_sepeda']; ?></td>
-					<td><?= $hsr['tanggal_meminjam']; ?></td>
-					<td><?= $hsr['tanggal_mengembalikan']; ?></td>
 				</tr>
 			<?php endwhile; ?>
 		</tbody>

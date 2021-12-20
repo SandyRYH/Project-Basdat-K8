@@ -228,11 +228,10 @@ function pinjamSepeda()
 
     $mahasiswa = htmlspecialchars($_POST["mahasiswa"]);
     $jenis = htmlspecialchars($_POST["jenis-sepeda"]);
-    $kode = htmlspecialchars($_POST["kode-sepeda"]);
     $tanggalMeminjam = date("l, d M Y");
 
-    $pinjamSepeda = "INSERT INTO peminjaman(mahasiswa, jenis_sepeda, kode_sepeda, tanggal_meminjam) 
-                    VALUES('$mahasiswa', '$jenis', '$kode', '$tanggalMeminjam')";
+    $pinjamSepeda = "INSERT INTO peminjaman(mahasiswa, jenis_sepeda, tanggal_meminjam) 
+                    VALUES('$mahasiswa', '$jenis', '$tanggalMeminjam')";
 
     $result = pg_query($conn, $pinjamSepeda);
     return pg_affected_rows($result);
