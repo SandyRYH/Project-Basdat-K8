@@ -2,12 +2,12 @@
 
 $mahasiswa = pg_query($conn, "SELECT * FROM mahasiswa");
 
-if (isset($_GET["id"])) {
+if (isset($_GET["nim"])) {
 	global $conn;
 
-	$id = $_GET["id"];
+	$nim = $_GET["nim"];
 
-	pg_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+	pg_query($conn, "DELETE FROM mahasiswa WHERE nim = '$nim'");
 
 	header("Location: index.php?page=mahasiswa");
 }

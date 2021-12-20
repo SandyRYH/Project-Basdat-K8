@@ -17,12 +17,12 @@ if (isset($_POST["tambah"])) {
     <h2>Tambah Sepeda</h2>
     <form class="tambah-form" method="post">
         <span>
-            <label for="sepeda">Sepeda</label>
-            <input type="text" name="sepeda" id="sepeda" required>
-        </span>
-        <span>
             <label for="kode">Kode</label>
             <input type="text" name="kode" id="kode" required>
+        </span>
+        <span>
+            <label for="jenis">Jenis Sepeda</label>
+            <input type="text" name="jenis" id="jenis" required>
         </span>
         <span>
             <label for="jumlah">Jumlah</label>

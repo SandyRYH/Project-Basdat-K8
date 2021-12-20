@@ -5,10 +5,10 @@ if (!(isset($_SESSION["username"]))) {
     exit;
 }
 
-$id = $_GET['id'];
+$kode = $_GET['kode'];
 
-$idCheck = pg_query($conn, "SELECT * FROM sepeda WHERE id = $id");
-$spd = pg_fetch_assoc($idCheck);
+$kodeCheck = pg_query($conn, "SELECT * FROM sepeda WHERE kode = '$kode'");
+$spd = pg_fetch_assoc($kodeCheck);
 
 if (isset($_POST["edit"])) {
     if (editSepeda($_POST > 0)) {
@@ -22,12 +22,8 @@ if (isset($_POST["edit"])) {
     <h2>Edit Sepeda</h2>
     <form class="tambah-form" method="post">
         <span>
-            <label for="sepeda">Sepeda</label>
-            <input type="text" name="sepeda" id="sepeda" placeholder="<?= $spd['sepeda']; ?>" required>
-        </span>
-        <span>
-            <label for="kode">Kode</label>
-            <input type="text" name="kode" id="kode" placeholder="<?= $spd['kode']; ?>" required>
+            <label for="jenis">Jenis Sepeda</label>
+            <input type="text" name="jenis" id="jenis" placeholder="<?= $spd['jenis']; ?>" required>
         </span>
         <span>
             <label for="jumlah">Jumlah</label>

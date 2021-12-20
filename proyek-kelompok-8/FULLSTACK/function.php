@@ -197,12 +197,12 @@ function addSepeda()
 {
     global $conn;
 
-    $sepeda = htmlspecialchars($_POST["sepeda"]);
+    $jenis = htmlspecialchars($_POST["jenis"]);
     $kode = htmlspecialchars($_POST["kode"]);
     $jumlah = htmlspecialchars($_POST["jumlah"]);
 
-    $addSepeda = "INSERT INTO sepeda(sepeda, kode, tersedia, jumlah) 
-                    VALUES('$sepeda', '$kode', '$jumlah', '$jumlah')";
+    $addSepeda = "INSERT INTO sepeda(jenis, kode, tersedia, jumlah) 
+                    VALUES('$jenis', '$kode', '$jumlah', '$jumlah')";
 
     $result = pg_query($conn, $addSepeda);
     return pg_affected_rows($result);
@@ -212,18 +212,15 @@ function editSepeda()
 {
     global $conn;
 
-    $id = htmlspecialchars($_GET["id"]);
-    $sepeda = htmlspecialchars($_POST["sepeda"]);
-    $kode = htmlspecialchars($_POST["kode"]);
+    $kode = htmlspecialchars($_GET["kode"]);
+    $jenis = htmlspecialchars($_POST["jenis"]);
     $jumlah = htmlspecialchars($_POST["jumlah"]);
 
     $editSepeda = "UPDATE sepeda SET 
-                    sepeda = '$sepeda', 
-                    kode = '$kode',
+                    jenis = '$jenis', 
                     tersedia = '$jumlah', 
                     jumlah = '$jumlah'
-                    WHERE id = $id";
-
+                    WHERE kode = '$kode'";
     $result = pg_query($conn, $editSepeda);
     return pg_affected_rows($result);
 }
@@ -232,13 +229,39 @@ function pinjamSepeda()
 {
     global $conn;
 
-    $mahasiswa = htmlspecialchars($_POST["mahasiswa"]);
+    $nim = htmlspecialchars($_POST["nim"]);
     $jenis = htmlspecialchars($_POST["jenis-sepeda"]);
     $tanggalMeminjam = date("l, d M Y");
 
-    $pinjamSepeda = "INSERT INTO peminjaman(mahasiswa, jenis_sepeda, tanggal_meminjam) 
-                    VALUES('$mahasiswa', '$jenis', '$tanggalMeminjam')";
+    $nimCheck = pg_query($conn, "SELECT * FROM peminjaman WHERE nim = '$nim'");
+
+    if (pg_fetch_assoc($nimCheck)) {
+
+        return false;
+    }
+
+    $result = pg_query($conn, "SELECT * FROM mahasiswa WHERE nim = '$nim'");
+    // $result2 = pg_fetch_assoc($nimCheck);
+
+    if (pg_num_rows($nimCheck) === 1) {
+        $mahasiswa = pg_fetch_assoc($result);
+    }
+
+    $result2 = pg_query($conn, "SELECT * FROM sepeda WHERE jenis = '$jenis");
+
+    if (pg_num_rows($result2) === 1) {
+
+        $tersedia = pg_fetch_assoc($result2);
+    }
+
+    $pinjamSepeda = "INSERT INTO peminjaman(nim, mahasiswa, jenis_sepeda, tanggal_meminjam) 
+                    VALUES('$nim', '$mahasiswa', '$jenis', '$tanggalMeminjam')";
+
+    $updateSepeda = "UPDATE sepeda SET 
+                tersedia = $tersedia 
+                WHERE jenis = '$jenis'";
 
     $result = pg_query($conn, $pinjamSepeda);
+    $result2 = pg_query($conn, $updateSepeda);
     return pg_affected_rows($result);
 }

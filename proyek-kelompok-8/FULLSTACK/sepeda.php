@@ -2,12 +2,12 @@
 
 $sepeda = pg_query($conn, "SELECT * FROM sepeda");
 
-if (isset($_GET["id"])) {
+if (isset($_GET["kode"])) {
 	global $conn;
 
-	$id = $_GET["id"];
+	$kode = $_GET["kode"];
 
-	pg_query($conn, "DELETE FROM sepeda WHERE id = $id");
+	pg_query($conn, "DELETE FROM sepeda WHERE kode = '$kode'");
 
 	header("Location: index.php?page=sepeda");
 }
@@ -26,9 +26,8 @@ if (isset($_GET["id"])) {
 	<table>
 		<thead>
 			<tr>
-				<th>No.</th>
-				<th>Sepeda</th>
 				<th>Kode</th>
+				<th>Sepeda</th>
 				<th>Tersedia</th>
 				<th>Jumlah</th>
 				<?php if ((isset($_SESSION["username"]))) : ?>
@@ -39,16 +38,15 @@ if (isset($_GET["id"])) {
 		<tbody>
 			<?php while ($spd = pg_fetch_assoc($sepeda)) : ?>
 				<tr>
-					<td><?= $spd['id']; ?></td>
-					<td><?= $spd['sepeda']; ?></td>
 					<td><?= $spd['kode']; ?></td>
+					<td><?= $spd['jenis']; ?></td>
 					<td><?= $spd['tersedia']; ?></td>
 					<td><?= $spd['jumlah']; ?></td>
 					<?php if ((isset($_SESSION["username"]))) : ?>
 						<td>
 							<span>
-								<a href="index.php?page=edit-sepeda&id=<?= $spd['id']; ?>&tersedia=<?= $spd['tersedia']; ?>"><img src="icon/edit.png"></a>
-								<a href="index.php?page=sepeda&id=<?= $spd['id']; ?>"><img src="icon/delete.png"></a>
+								<a href="index.php?page=edit-sepeda&kode=<?= $spd['kode']; ?>&tersedia=<?= $spd['tersedia']; ?>"><img src="icon/edit.png"></a>
+								<a href="index.php?page=sepeda&kode=<?= $spd['kode']; ?>"><img src="icon/delete.png"></a>
 							</span>
 						</td>
 					<?php endif; ?>

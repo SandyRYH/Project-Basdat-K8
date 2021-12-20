@@ -2,24 +2,12 @@
 
 $peminjaman = pg_query($conn, "SELECT * FROM peminjaman");
 
-if (isset($_GET["id"])) {
+if (isset($_GET["nim"])) {
 	global $conn;
 
-	$id = $_GET["id"];
-	$mahasiswa = $_GET["mahasiswa"];
-	$jenis = $_GET["jenis"];
-	$kode = $_GET["kode"];
-	$tgl = $_GET["tgl"];
-	$tanggal = date("l, d M Y");
+	$nim = $_GET["nim"];
 
-	$query = pg_fetch_assoc($idCheck);
-
-	$history = "INSERT INTO history(mahasiswa, jenis_sepeda, kode_sepeda, tanggal_meminjam, tanggal_mengembalikan) 
-                    VALUES('$mahasiswa', '$jenis', '$kode', '$tgl', $tanggal)";
-
-	pg_query($conn, "DELETE FROM peminjaman WHERE id = $id");
-
-	pg_query($conn, $history);
+	pg_query($conn, "DELETE FROM peminjaman WHERE nim = '$nim'");
 
 	header("Location: index.php?page=peminjaman");
 }
@@ -38,7 +26,7 @@ if (isset($_GET["id"])) {
 	<table>
 		<thead>
 			<tr>
-				<th>No.</th>
+				<th>NIM</th>
 				<th>Mahasiswa</th>
 				<th>Jenis Sepeda</th>
 				<th>Tanggal Peminjaman</th>
@@ -50,12 +38,12 @@ if (isset($_GET["id"])) {
 		<tbody>
 			<?php while ($pmj = pg_fetch_assoc($peminjaman)) : ?>
 				<tr>
-					<td><?= $pmj['id']; ?></td>
+					<td><?= $pmj['nim']; ?></td>
 					<td><?= $pmj['mahasiswa']; ?></td>
 					<td><?= $pmj['jenis_sepeda']; ?></td>
 					<td><?= $pmj['tanggal_meminjam']; ?></td>
 					<?php if ((isset($_SESSION["username"]))) : ?>
-						<td><a href="index.php?page=peminjaman&id=<?= $pmj['id']; ?>&mahasiswa=<?= $pmj['mahasiswa']; ?>&jenis=<?= $pmj['jenis_sepeda']; ?>&tgl=<?= $pmj['tanggal_meminjam']; ?>">Kembailkan</a></td>
+						<td><a href="index.php?page=peminjaman&nim=<?= $pmj['nim']; ?>">Kembailkan</a></td>
 					<?php endif; ?>
 				</tr>
 			<?php endwhile; ?>

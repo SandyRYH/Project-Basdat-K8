@@ -5,10 +5,10 @@ if (!(isset($_SESSION["username"]))) {
 	exit;
 }
 
-$id = $_GET['id'];
+$nim = $_GET['nim'];
 
-$idCheck = pg_query($conn, "SELECT * FROM mahasiswa WHERE id = $id");
-$mhs = pg_fetch_assoc($idCheck);
+$nimCheck = pg_query($conn, "SELECT * FROM mahasiswa WHERE nim = '$nim'");
+$mhs = pg_fetch_assoc($nimCheck);
 
 if (isset($_POST["edit"])) {
 	if (editMhs($_POST) > 0) {
