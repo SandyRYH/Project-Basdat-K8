@@ -1,6 +1,6 @@
 <?php
 
-// require 'function.php';
+require 'function.php';
 
 if (isset($_SESSION["username"])) {
 	$username = $_SESSION["username"];
