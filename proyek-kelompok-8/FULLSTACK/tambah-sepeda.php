@@ -14,7 +14,7 @@ if (isset($_POST["tambah"])) {
 ?>
 
 <div class="tambah-box">
-    <h2>Tambah Mahasiswa</h2>
+    <h2>Tambah Sepeda</h2>
     <form class="tambah-form" method="post">
         <span>
             <label for="sepeda">Sepeda</label>
