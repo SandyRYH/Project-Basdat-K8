@@ -195,7 +195,8 @@ function addSepeda()
     $kode = htmlspecialchars($_POST["kode"]);
     $jumlah = htmlspecialchars($_POST["jumlah"]);
 
-    $addSepeda = "INSERT INTO sepeda VALUES('', '$sepeda', '$kode', '', '$jumlah')";
+    $addSepeda = "INSERT INTO sepeda(sepeda, kode, jumlah) 
+                    VALUES('$sepeda', '$kode', '$jumlah')";
 
     $result = pg_query($conn, $addSepeda);
     return pg_affected_rows($result);
@@ -210,7 +211,11 @@ function editSepeda($data)
     $kode = htmlspecialchars(($data["kode"]));
     $jumlah = htmlspecialchars(($data["jumlah"]));
 
-    $editSepeda = "UPDATE sepeda SET id = '$id', sepeda = '$sepeda', kode = '$kode', tersedia = '', jumlah = '$jumlah', WHERE id = '$id'";
+    $editSepeda = "UPDATE sepeda SET 
+                    sepeda = '$sepeda', 
+                    kode = '$kode', 
+                    jumlah = '5'
+                    WHERE id = $id";
 
     $result = pg_query($conn, $editSepeda);
     return pg_affected_rows($result);
@@ -220,10 +225,13 @@ function pinjamSepeda()
 {
     global $conn;
 
-    $nim = htmlspecialchars($_POST["nim"]);
-    $sepeda = htmlspecialchars($_POST["sepeda"]);
+    $mahasiswa = htmlspecialchars($_POST["mahasiswa"]);
+    $jenis = htmlspecialchars($_POST["jenis-sepeda"]);
+    $kode = htmlspecialchars($_POST["kode-sepeda"]);
+    $tanggalMeminjam = date("l, d M Y");
 
-    $pinjamSepeda = "INSERT INTO peminjaman VALUES()";
+    $pinjamSepeda = "INSERT INTO peminjaman(mahasiswa, jenis_sepeda, kode_sepeda, tanggal_meminjam) 
+                    VALUES('$mahasiswa', '$jenis', '$kode', '$tanggalMeminjam')";
 
     $result = pg_query($conn, $pinjamSepeda);
     return pg_affected_rows($result);

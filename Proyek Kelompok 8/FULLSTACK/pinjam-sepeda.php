@@ -17,12 +17,16 @@ if (isset($_POST["pinjam"])) {
     <h2>Pinjam Sepeda</h2>
     <form class="pinjam-form" method="post">
         <span>
-            <label for="nim">NIM</label>
-            <input type="text" name="nim" id="nim" required>
+            <label for="mahasiswa">Mahasiswa</label>
+            <input type="text" name="mahasiswa" id="mahasiswa" required>
         </span>
         <span>
-            <label for="sepeda">Sepeda</label>
-            <input type="text" name="sepeda" id="sepeda" required>
+            <label for="jenis-sepeda">Jenis Sepeda</label>
+            <input type="text" name="jenis-sepeda" id="jenis-sepeda" required>
+        </span>
+        <span>
+            <label for="kode-sepeda">Kode Sepeda</label>
+            <input type="text" name="kode-sepeda" id="kode-sepeda" required>
         </span>
         <span>
             <button type="submit" name="pinjam" id="pinjam">Pinjam</button>

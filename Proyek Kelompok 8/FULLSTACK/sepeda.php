@@ -9,7 +9,7 @@ if (isset($_GET["id"])) {
 
 	pg_query($conn, "DELETE FROM sepeda WHERE id = $id");
 
-	header("Location: index.php?page=mahasiswa");
+	header("Location: index.php?page=sepeda");
 }
 
 ?>
@@ -37,7 +37,7 @@ if (isset($_GET["id"])) {
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($sepeda as $spd) : ?>
+			<?php while ($spd = pg_fetch_assoc($sepeda)) : ?>
 				<tr>
 					<td><?= $spd['id']; ?></td>
 					<td><?= $spd['sepeda']; ?></td>
@@ -53,7 +53,7 @@ if (isset($_GET["id"])) {
 						</td>
 					<?php endif; ?>
 				</tr>
-			<?php endforeach; ?>
+			<?php endwhile; ?>
 		</tbody>
 	</table>
 </div>

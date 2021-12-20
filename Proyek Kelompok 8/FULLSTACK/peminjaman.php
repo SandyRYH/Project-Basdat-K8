@@ -3,6 +3,32 @@
 $peminjaman = pg_query($conn, "SELECT * FROM peminjaman");
 $history = pg_query($conn, "SELECT * FROM history");
 
+if (isset($_GET["id"])) {
+	global $conn;
+
+	$id = $_GET["id"];
+
+	$idCheck = pg_query($conn, "SELECT * peminjaman WHERE id = $id");
+	$query = pg_fetch_assoc($idCheck);
+
+	$mahasiswa = $query['mahasiswa'];
+	$jenis = $query['jenis_sepeda'];
+	$kode = $query['kode_sepeda'];
+	$tanggalMeminjam = $query['tanggal_meminjam'];
+	$tanggalMeminjam = date("l, d M Y");
+
+	$history = "INSERT INTO history(mahasiswa, jenis_sepeda, kode_sepeda, tanggal_meminjam, tanggal_mengembalikan) 
+                    VALUES('$mahasiswa', '$jenis', '$kode', '$tanggalMeminjam', $tanggalMengembalikan)";
+
+	pg_query($conn, "DELETE FROM peminjaman WHERE id = $id");
+
+	pg_query($conn, $history);
+
+	var_dump($query['mahasiswa']);
+
+	header("Location: index.php?page=peminjaman");
+}
+
 ?>
 
 <div class="article-title">
@@ -20,6 +46,7 @@ $history = pg_query($conn, "SELECT * FROM history");
 				<th>No.</th>
 				<th>Mahasiswa</th>
 				<th>Jenis Sepeda</th>
+				<th>Kode Sepeda</th>
 				<th>Tanggal Peminjaman</th>
 				<?php if ((isset($_SESSION["username"]))) : ?>
 					<th>Aksi</th>
@@ -27,17 +54,18 @@ $history = pg_query($conn, "SELECT * FROM history");
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($peminjaman as $pmj) : ?>
+			<?php while ($pmj = pg_fetch_assoc($peminjaman)) : ?>
 				<tr>
 					<td><?= $pmj['id']; ?></td>
 					<td><?= $pmj['mahasiswa']; ?></td>
-					<td><?= $pmj['jenis-sepeda']; ?></td>
-					<td><?= $pmj['tanggal-meminjam']; ?></td>
+					<td><?= $pmj['jenis_sepeda']; ?></td>
+					<td><?= $pmj['kode_sepeda']; ?></td>
+					<td><?= $pmj['tanggal_meminjam']; ?></td>
 					<?php if ((isset($_SESSION["username"]))) : ?>
-						<td><a href=""><img src="icon/checked.png"></a></td>
+						<td><a href="index.php?page=peminjaman&id=<?= $pmj['id']; ?>"><img src="icon/checked.png"></a></td>
 					<?php endif; ?>
 				</tr>
-			<?php endforeach; ?>
+			<?php endwhile; ?>
 		</tbody>
 	</table>
 </div>
@@ -49,20 +77,22 @@ $history = pg_query($conn, "SELECT * FROM history");
 				<th>No.</th>
 				<th>Mahasiswa</th>
 				<th>Jenis Sepeda</th>
+				<th>Kode Sepeda</th>
 				<th>Tanggal Peminjaman</th>
 				<th>Tanggal Pengembalian</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($history as $hsr) : ?>
+			<?php while ($hsr = pg_fetch_assoc($history)) : ?>
 				<tr>
 					<td><?= $hsr['id']; ?></td>
 					<td><?= $hsr['mahasiswa']; ?></td>
-					<td><?= $hsr['jenis-sepeda']; ?></td>
-					<td><?= $hsr['tanggal-meminjam']; ?></td>
-					<td><?= $hsr['tanggal-mengembalikan']; ?></td>
+					<td><?= $hsr['jenis_sepeda']; ?></td>
+					<td><?= $hsr['kode_sepeda']; ?></td>
+					<td><?= $hsr['tanggal_meminjam']; ?></td>
+					<td><?= $hsr['tanggal_mengembalikan']; ?></td>
 				</tr>
-			<?php endforeach; ?>
+			<?php endwhile; ?>
 		</tbody>
 	</table>
 </div>
