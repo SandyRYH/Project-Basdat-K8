@@ -21,7 +21,6 @@ if (isset($_POST["edit"])) {
 <div class="edit-box">
 	<h2>Edit Mahasiswa</h2>
 	<form class="edit-form" method="post">
-		<input type="hidden" name="id" id="id" value="<?= $mhs["id"]; ?>">
 		<span>
 			<label for="nim">NIM</label>
 			<input type="text" name="nim" id="nim" placeholder="<?= $mhs["nim"]; ?>" required>

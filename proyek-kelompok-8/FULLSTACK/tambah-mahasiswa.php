@@ -8,6 +8,8 @@ if (!(isset($_SESSION["username"]))) {
 if (isset($_POST["tambah"])) {
 	if (addMhs($_POST > 0)) {
 		header("Location: index.php?page=mahasiswa");
+	} else {
+		$error = true;
 	}
 }
 
@@ -16,6 +18,9 @@ if (isset($_POST["tambah"])) {
 <div class="tambah-box">
 	<h2>Tambah Mahasiswa</h2>
 	<form class="tambah-form" method="post">
+		<?php if (isset($error)) : ?>
+			<p class="error-text">NIM sudah terdaftar, masukan NIM lain</p>
+		<?php endif; ?>
 		<span>
 			<label for="nim">NIM</label>
 			<input type="text" name="nim" id="nim" required>

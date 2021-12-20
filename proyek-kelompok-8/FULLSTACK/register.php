@@ -6,7 +6,7 @@ if (isset($_POST["register"])) {
     if (register($_POST) > 0) {
         header("Location: index.php");
     } else {
-        $error2 = pg_errormessage($conn);
+        $error = pg_errormessage($conn);
     }
 }
 
@@ -31,7 +31,7 @@ if (isset($_POST["register"])) {
             <h1>Register</h1>
         </div>
         <form id="register-form" method="post">
-            <?php if (isset($error2)) : ?>
+            <?php if (isset($error)) : ?>
                 <p class="error-text">Username sudah tersedia atau konfirmasi password tidak cocok</p>
             <?php endif; ?>
             <input type="username" name="username-register" id="username-register" placeholder="Username" required>

@@ -26,7 +26,6 @@ if (isset($_GET["id"])) {
 	<table>
 		<thead>
 			<tr>
-				<th>No.</th>
 				<th>NIM</th>
 				<th>Mahasiswa</th>
 				<th>Jenis Kelamin</th>
@@ -41,7 +40,6 @@ if (isset($_GET["id"])) {
 		<tbody>
 			<?php while ($mhs = pg_fetch_assoc($mahasiswa)) : ?>
 				<tr>
-					<td><?= $mhs['id']; ?></td>
 					<td><?= $mhs['nim']; ?></td>
 					<td><?= $mhs['mahasiswa']; ?></td>
 					<td><?= $mhs['gender']; ?></td>
@@ -51,8 +49,8 @@ if (isset($_GET["id"])) {
 					<?php if ((isset($_SESSION["username"]))) : ?>
 						<td>
 							<span>
-								<a href="index.php?page=edit-mahasiswa&id=<?= $mhs['id']; ?>"><img src="icon/edit.png"></a>
-								<a href="index.php?page=mahasiswa&id=<?= $mhs['id']; ?>"><img src="icon/delete.png"></a>
+								<a href="index.php?page=edit-mahasiswa&nim=<?= $mhs['nim']; ?>"><img src="icon/edit.png"></a>
+								<a href="index.php?page=mahasiswa&nim=<?= $mhs['nim']; ?>"><img src="icon/delete.png"></a>
 							</span>
 						</td>
 					<?php endif; ?>

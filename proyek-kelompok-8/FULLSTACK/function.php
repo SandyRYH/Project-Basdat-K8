@@ -155,6 +155,13 @@ function addMhs()
     $departemen = htmlspecialchars($_POST["departemen"]);
     $alamat = htmlspecialchars($_POST["alamat"]);
 
+    $nimCheck = pg_query($conn, "SELECT * FROM mahasiswa WHERE nim = '$nim'");
+
+    if (pg_fetch_assoc($nimCheck)) {
+
+        return false;
+    }
+
     $addMhs = "INSERT INTO mahasiswa(nim, mahasiswa, gender, fakultas, departemen, alamat)
                 VALUES('$nim', '$mahasiswa', '$gender', '$fakultas', '$departemen', '$alamat')";
 
@@ -166,8 +173,7 @@ function editMhs($data)
 {
     global $conn;
 
-    $id = htmlspecialchars($_GET["id"]);
-    $nim = htmlspecialchars($data["nim"]);
+    $nim = htmlspecialchars($_GET["nim"]);
     $mahasiswa = htmlspecialchars($data["mahasiswa"]);
     $gender = htmlspecialchars($data["gender"]);
     $fakultas = htmlspecialchars($data["fakultas"]);
@@ -181,7 +187,7 @@ function editMhs($data)
                 departemen = '$departemen', 
                 fakultas = '$fakultas', 
                 alamat = '$alamat' 
-                WHERE id = '$id'";
+                WHERE nim = '$nim'";
 
     $result = pg_query($conn, $editMhs);
     return pg_affected_rows($result);

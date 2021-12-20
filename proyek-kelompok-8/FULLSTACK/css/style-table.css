@@ -94,3 +94,9 @@ td:last-child span {
 #history-title {
     margin-bottom: 20px;
 }
+
+.error-text {
+    margin-bottom: 5px;
+    color: red;
+    font-size: 12px;
+}
