@@ -1,7 +1,6 @@
 <?php
 
 $peminjaman = pg_query($conn, "SELECT * FROM peminjaman");
-$history = pg_query($conn, "SELECT * FROM history");
 
 if (isset($_GET["id"])) {
 	global $conn;
