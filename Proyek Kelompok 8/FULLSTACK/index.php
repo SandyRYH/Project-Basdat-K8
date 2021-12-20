@@ -4,7 +4,7 @@ require 'function.php';
 
 if (isset($_SESSION["username"])) {
 	$username = $_SESSION["username"];
-	$usernameCheck = pg_query($conn, "SELECT * FROM `admin` WHERE username = '$username'");
+	$usernameCheck = pg_query($conn, "SELECT * FROM admin WHERE username = '$username'");
 	$user = pg_fetch_assoc($usernameCheck);
 }
 

@@ -1,53 +1,59 @@
-<?php include("config.php"); ?>
+<?php
 
+$sepeda = pg_query($conn, "SELECT * FROM sepeda");
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Peminjaman Sepeda IPB</title>
-</head>
+if (isset($_GET["id"])) {
+	global $conn;
 
-<body>
-	<header>
-		<h3>Daftar Sepeda IPB</h3>
-	</header>
+	$id = $_GET["id"];
 
-	<table border="2">
-	<thead>
-		<tr>
-			<th>ID Sepeda</th>
-			<th>ID Tipe</th>
-		</tr>
+	pg_query($conn, "DELETE FROM sepeda WHERE id = $id");
 
-	</thead>
-	<tbody>
+	header("Location: index.php?page=mahasiswa");
+}
 
-		<?php
-		$query = pg_query("SELECT * FROM sepedaipb");
-		// $query = mysqli_query($db, $sql);
+?>
 
-
-		while($siswa = pg_fetch_array($query)){
-			echo "<tr>";
-
-			echo "<td>".$siswa['sepedaid']."</td>";
-			echo "<td>".$siswa['idtipe']."</td>";
-			echo "</tr>";
-
-			}
-
-
-		?>
-		<tc>
-			<th>Jumlah Sepeda</th>
-			<th><?php echo pg_num_rows($query) ?></th>
-		</tc>
-	</tbody>
+<div class="article-title">
+	<h2>Daftar Sepeda</h2>
+</div>
+<?php if (isset($_SESSION["username"])) : ?>
+	<div class="button-box">
+		<a href="index.php?page=tambah-sepeda" id="button">+ Tambah</a>
+	</div>
+<?php endif; ?>
+<div class="table-box">
+	<table>
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>Sepeda</th>
+				<th>Kode</th>
+				<th>Tersedia</th>
+				<th>Jumlah</th>
+				<?php if ((isset($_SESSION["username"]))) : ?>
+					<th>Aksi</th>
+				<?php endif; ?>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($sepeda as $spd) : ?>
+				<tr>
+					<td><?= $spd['id']; ?></td>
+					<td><?= $spd['sepeda']; ?></td>
+					<td><?= $spd['kode']; ?></td>
+					<td><?= $spd['tersedia']; ?></td>
+					<td><?= $spd['jumlah']; ?></td>
+					<?php if ((isset($_SESSION["username"]))) : ?>
+						<td>
+							<span>
+								<a href="index.php?page=edit-sepeda&id=<?= $spd['id']; ?>"><img src="icon/edit.png"></a>
+								<a href="index.php?page=sepeda&id=<?= $spd['id']; ?>"><img src="icon/delete.png"></a>
+							</span>
+						</td>
+					<?php endif; ?>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
 	</table>
-	<br>
-	<a href="daftartipe.php">Daftar Tipe Sepeda</a>
-	<a> --- </a>
-	<a href="index.php">Back to Home</a>
-
-	</body>
-</html>
+</div>

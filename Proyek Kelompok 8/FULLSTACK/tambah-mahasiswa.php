@@ -25,8 +25,9 @@ if (isset($_POST["tambah"])) {
 			<input type="text" name="mahasiswa" id="mahasiswa" required>
 		</span>
 		<span>
+			<label>Fakultas</label>
 			<select name="fakultas">
-				<option disabled>Fakultas</option>
+				<option selected disabled>-- PILIH --</option>
 				<option value="Faperta">Faperta</option>
 				<option value="FKH">FKH</option>
 				<option value="FPIK">FPIK</option>

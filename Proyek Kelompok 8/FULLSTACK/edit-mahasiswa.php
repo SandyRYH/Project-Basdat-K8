@@ -31,8 +31,21 @@ if (isset($_POST["edit"])) {
 			<input type="text" name="mahasiswa" id="mahasiswa" placeholder="<?= $mhs["mahasiswa"]; ?>" required>
 		</span>
 		<span>
-			<label for="fakultas">Fakultas</label>
-			<input type="text" name="fakultas" id="fakultas" placeholder="<?= $mhs["fakultas"]; ?>" required>
+			<label>Fakultas</label>
+			<select name="fakultas">
+				<option selected disabled>-- PILIH --</option>
+				<option value="Faperta">Faperta</option>
+				<option value="FKH">FKH</option>
+				<option value="FPIK">FPIK</option>
+				<option value="Fapet">Fapet</option>
+				<option value="Fahutan">Fahutan</option>
+				<option value="Fateta">Fateta</option>
+				<option value="FMIPA">FMIPA</option>
+				<option value="FEM">FEM</option>
+				<option value="FEMA">FEMA</option>
+				<option value="Sekolah Bisnis">Sekolah Bisnis</option>
+				<option value="Sekolah Bisnis">Sekolah Vokasi</option>
+			</select>
 		</span>
 		<span>
 			<label for="departemen">Departemen</label>

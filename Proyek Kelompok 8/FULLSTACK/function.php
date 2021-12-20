@@ -10,7 +10,7 @@ function login()
     $username = $_POST["username-login"];
     $password = $_POST["password-login"];
 
-    $usernameCheck = pg_query($conn, "SELECT * FROM `admin` WHERE username = '$username'");
+    $usernameCheck = pg_query($conn, "SELECT * FROM admin WHERE username = '$username'");
 
     if (pg_num_rows($usernameCheck) === 1) {
 
@@ -33,7 +33,7 @@ function register($data)
     $password = pg_escape_string($data["password-register"]);
     $password2 = pg_escape_string($data["password2-register"]);
 
-    $usernameCheck = pg_query($conn, "SELECT * FROM `admin` WHERE username = '$username'");
+    $usernameCheck = pg_query($conn, "SELECT * FROM admin WHERE username = '$username'");
     $user = pg_fetch_assoc($usernameCheck);
 
     if (pg_fetch_assoc($usernameCheck)) {
@@ -48,11 +48,13 @@ function register($data)
 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    pg_query($conn, "INSERT INTO `admin` VALUES('', '$username', '$password', '', '', '', '', '', 'default.png')");
+    $result = pg_query($conn, "INSERT INTO 
+                admin(username, password, mahasiswa, gender, fakultas, departemen, alamat, image) 
+                VALUES('$username', '$password', '', '', '', '', '', 'default.png')");
 
     $_SESSION["username"] = $user['username'];
 
-    return pg_affected_rows($conn);
+    return pg_affected_rows($result);
 }
 
 function updateProfile($data)
@@ -66,7 +68,7 @@ function updateProfile($data)
 
     $username = $_SESSION["username"];
 
-    $usernameCheck = pg_query($conn, "SELECT * FROM `admin` WHERE username = '$username'");
+    $usernameCheck = pg_query($conn, "SELECT * FROM admin WHERE username = '$username'");
     $user = pg_fetch_assoc($usernameCheck);
 
     $id = $user['id'];
@@ -78,7 +80,7 @@ function updateProfile($data)
     $fakultas = htmlspecialchars($data["fakultas"]);
     $alamat = htmlspecialchars($data["address"]);
 
-    $updateProfile = "UPDATE `admin` SET
+    $updateProfile = "UPDATE admin SET
                         id = '$id', 
                         username = '$username', 
                         password = '$password', 
@@ -90,9 +92,9 @@ function updateProfile($data)
                         image = '$img'
                         WHERE id = '$id'
                         ";
-    pg_query($conn, $updateProfile);
+    $result = pg_query($conn, $updateProfile);
 
-    return pg_affected_rows($conn);
+    return pg_affected_rows($result);
 }
 
 function upload()
@@ -101,7 +103,7 @@ function upload()
 
     $username = $_SESSION["username"];
 
-    $usernameCheck = pg_query($conn, "SELECT * FROM `admin` WHERE username = '$username'");
+    $usernameCheck = pg_query($conn, "SELECT * FROM admin WHERE username = '$username'");
     $user = pg_fetch_assoc($usernameCheck);
     $image = $user['image'];
 
@@ -153,17 +155,11 @@ function addMhs()
     $departemen = htmlspecialchars($_POST["departemen"]);
     $alamat = htmlspecialchars($_POST["alamat"]);
 
-    // $nimCheck = pg_query($conn, "SELECT * FROM mahasiswa WHERE nim = $nim");
+    $addMhs = "INSERT INTO mahasiswa(nim, mahasiswa, gender, fakultas, departemen, alamat)
+                VALUES('$nim', '$mahasiswa', '$gender', '$fakultas', '$departemen', '$alamat')";
 
-    // if (pg_fetch_assoc($nimCheck)) {
-
-    //     return false;
-    // }
-
-    $addMhs = "INSERT INTO mahasiswa VALUES('', '$nim', '$mahasiswa', '$gender', '$fakultas', '$departemen', '$alamat')";
-
-    pg_query($conn, $addMhs);
-    return pg_affected_rows($conn);
+    $result = pg_query($conn, $addMhs);
+    return pg_affected_rows($result);
 }
 
 function editMhs($data)
@@ -178,10 +174,17 @@ function editMhs($data)
     $departemen = htmlspecialchars($data["departemen"]);
     $alamat = htmlspecialchars($data["alamat"]);
 
-    $editMhs = "UPDATE mahasiswa SET id = '$id', nim = '$nim', mahasiswa = '$mahasiswa',gender = '$gender', departemen = '$departemen', fakultas = '$fakultas', alamat = '$alamat', WHERE id = '$id'";
+    $editMhs = "UPDATE mahasiswa SET 
+                nim = '$nim', 
+                mahasiswa = '$mahasiswa', 
+                gender = '$gender', 
+                departemen = '$departemen', 
+                fakultas = '$fakultas', 
+                alamat = '$alamat' 
+                WHERE id = '$id'";
 
-    pg_query($conn, $editMhs);
-    return pg_affected_rows($conn);
+    $result = pg_query($conn, $editMhs);
+    return pg_affected_rows($result);
 }
 
 function addSepeda()
@@ -194,8 +197,8 @@ function addSepeda()
 
     $addSepeda = "INSERT INTO sepeda VALUES('', '$sepeda', '$kode', '', '$jumlah')";
 
-    pg_query($conn, $addSepeda);
-    return pg_affected_rows($conn);
+    $result = pg_query($conn, $addSepeda);
+    return pg_affected_rows($result);
 }
 
 function editSepeda($data)
@@ -209,8 +212,8 @@ function editSepeda($data)
 
     $editSepeda = "UPDATE sepeda SET id = '$id', sepeda = '$sepeda', kode = '$kode', tersedia = '', jumlah = '$jumlah', WHERE id = '$id'";
 
-    pg_query($conn, $editSepeda);
-    return pg_affected_rows($conn);
+    $result = pg_query($conn, $editSepeda);
+    return pg_affected_rows($result);
 }
 
 function pinjamSepeda()
@@ -222,6 +225,6 @@ function pinjamSepeda()
 
     $pinjamSepeda = "INSERT INTO peminjaman VALUES()";
 
-    pg_query($conn, $pinjamSepeda);
-    return pg_affected_rows($conn);
+    $result = pg_query($conn, $pinjamSepeda);
+    return pg_affected_rows($result);
 }

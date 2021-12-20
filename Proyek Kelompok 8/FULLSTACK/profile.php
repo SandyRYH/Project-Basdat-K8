@@ -1,6 +1,6 @@
 <?php
 
-$usernameCheck = pg_query($conn, "SELECT * FROM `admin` WHERE username = '$username'");
+$usernameCheck = pg_query($conn, "SELECT * FROM admin WHERE username = '$username'");
 $user = pg_fetch_assoc($usernameCheck);
 
 if (!isset($_SESSION["username"])) {
@@ -50,18 +50,19 @@ if (isset($_POST["update-profile"])) {
                 <?php if ($user['gender'] == "Laki-laki") : ?>
                     <input type="radio" name="gender" class="gender" id="gender" value="Laki-laki" required checked>Laki-laki
                     <input type="radio" name="gender" class="gender" id="gender" value="Perempuan" required>Perempuan
-                <?php endif;  ?>
-                <?php if ($user['gender'] == "Perempuan") : ?>
+                <?php elseif ($user['gender'] == "Perempuan") : ?>
                     <input type="radio" name="gender" class="gender" id="gender" value="Laki-laki" required>Laki-laki
                     <input type="radio" name="gender" class="gender" id="gender" value="Perempuan" required checked>Perempuan
+                <?php else : ?>
+                    <input type="radio" name="gender" class="gender" id="gender" value="Laki-laki" required>Laki-laki
+                    <input type="radio" name="gender" class="gender" id="gender" value="Perempuan" required>Perempuan
                 <?php endif;  ?>
-            </span>
-            <span>
-                <label>Gambar</label>
-                <input type="file" name="img" id="img">
-            </span>
-            <span>
-                <button type="submit" name="update-profile" id="update-profile">Simpan</button>
-            </span>
+                <span>
+                    <label>Gambar</label>
+                    <input type="file" name="img" id="img">
+                </span>
+                <span>
+                    <button type="submit" name="update-profile" id="update-profile">Simpan</button>
+                </span>
         </form>
     </div>
