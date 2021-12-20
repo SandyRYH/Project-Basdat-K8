@@ -195,26 +195,27 @@ function addSepeda()
     $kode = htmlspecialchars($_POST["kode"]);
     $jumlah = htmlspecialchars($_POST["jumlah"]);
 
-    $addSepeda = "INSERT INTO sepeda(sepeda, kode, jumlah) 
-                    VALUES('$sepeda', '$kode', '$jumlah')";
+    $addSepeda = "INSERT INTO sepeda(sepeda, kode, tersedia, jumlah) 
+                    VALUES('$sepeda', '$kode', '$jumlah', '$jumlah')";
 
     $result = pg_query($conn, $addSepeda);
     return pg_affected_rows($result);
 }
 
-function editSepeda($data)
+function editSepeda()
 {
     global $conn;
 
     $id = htmlspecialchars($_GET["id"]);
-    $sepeda = htmlspecialchars(($data["sepeda"]));
-    $kode = htmlspecialchars(($data["kode"]));
-    $jumlah = htmlspecialchars(($data["jumlah"]));
+    $sepeda = htmlspecialchars($_POST["sepeda"]);
+    $kode = htmlspecialchars($_POST["kode"]);
+    $jumlah = htmlspecialchars($_POST["jumlah"]);
 
     $editSepeda = "UPDATE sepeda SET 
                     sepeda = '$sepeda', 
-                    kode = '$kode', 
-                    jumlah = '5'
+                    kode = '$kode',
+                    tersedia = '$jumlah', 
+                    jumlah = '$jumlah'
                     WHERE id = $id";
 
     $result = pg_query($conn, $editSepeda);

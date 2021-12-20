@@ -47,7 +47,7 @@ if (isset($_GET["id"])) {
 					<?php if ((isset($_SESSION["username"]))) : ?>
 						<td>
 							<span>
-								<a href="index.php?page=edit-sepeda&id=<?= $spd['id']; ?>"><img src="icon/edit.png"></a>
+								<a href="index.php?page=edit-sepeda&id=<?= $spd['id']; ?>&tersedia=<?= $spd['tersedia']; ?>"><img src="icon/edit.png"></a>
 								<a href="index.php?page=sepeda&id=<?= $spd['id']; ?>"><img src="icon/delete.png"></a>
 							</span>
 						</td>

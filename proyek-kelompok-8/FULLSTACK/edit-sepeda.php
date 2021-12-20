@@ -21,7 +21,6 @@ if (isset($_POST["edit"])) {
 <div class="tambah-box">
     <h2>Edit Sepeda</h2>
     <form class="tambah-form" method="post">
-        <input type="hidden" name="id" id="id" value="<?= $spd['id']; ?>">
         <span>
             <label for="sepeda">Sepeda</label>
             <input type="text" name="sepeda" id="sepeda" placeholder="<?= $spd['sepeda']; ?>" required>
