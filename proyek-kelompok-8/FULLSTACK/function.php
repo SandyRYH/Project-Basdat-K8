@@ -240,13 +240,6 @@ function pinjamSepeda()
         return false;
     }
 
-    $result = pg_query($conn, "SELECT * FROM mahasiswa WHERE nim = '$nim'");
-    // $result2 = pg_fetch_assoc($nimCheck);
-
-    if (pg_num_rows($nimCheck) === 1) {
-        $mahasiswa = pg_fetch_assoc($result);
-    }
-
     $result2 = pg_query($conn, "SELECT * FROM sepeda WHERE jenis = '$jenis");
 
     if (pg_num_rows($result2) === 1) {
@@ -254,8 +247,8 @@ function pinjamSepeda()
         $tersedia = pg_fetch_assoc($result2);
     }
 
-    $pinjamSepeda = "INSERT INTO peminjaman(nim, mahasiswa, jenis_sepeda, tanggal_meminjam) 
-                    VALUES('$nim', '$mahasiswa', '$jenis', '$tanggalMeminjam')";
+    $pinjamSepeda = "INSERT INTO peminjaman(nim, jenis_sepeda, tanggal_meminjam) 
+                    VALUES('$nim', '$jenis', '$tanggalMeminjam')";
 
     $updateSepeda = "UPDATE sepeda SET 
                 tersedia = $tersedia 

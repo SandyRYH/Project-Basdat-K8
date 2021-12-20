@@ -27,7 +27,6 @@ if (isset($_GET["nim"])) {
 		<thead>
 			<tr>
 				<th>NIM</th>
-				<th>Mahasiswa</th>
 				<th>Jenis Sepeda</th>
 				<th>Tanggal Peminjaman</th>
 				<?php if ((isset($_SESSION["username"]))) : ?>
@@ -39,7 +38,6 @@ if (isset($_GET["nim"])) {
 			<?php while ($pmj = pg_fetch_assoc($peminjaman)) : ?>
 				<tr>
 					<td><?= $pmj['nim']; ?></td>
-					<td><?= $pmj['mahasiswa']; ?></td>
 					<td><?= $pmj['jenis_sepeda']; ?></td>
 					<td><?= $pmj['tanggal_meminjam']; ?></td>
 					<?php if ((isset($_SESSION["username"]))) : ?>
