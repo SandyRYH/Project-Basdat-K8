@@ -34,11 +34,11 @@ if (isset($_POST["pinjam"])) {
             </select>
         </span>
         <span>
-            <label for="jenis-sepeda">Jenis Sepeda</label>
-            <select name="jenis-sepeda" id="jenis_sepeda">
+            <label for="jenis">Jenis Sepeda</label>
+            <select name="jenis" id="jenis">
                 <option selected disabled>-- PILIH --</option>
                 <?php while ($jns = pg_fetch_assoc($sepeda)) : ?>
-                    <option value="<?= $jns["sepeda"]; ?>"><?= $jns["sepeda"]; ?></option>
+                    <option value="<?= $jns["jenis"]; ?>"><?= $jns["jenis"]; ?></option>
                 <?php endwhile; ?>
             </select>
         </span>
