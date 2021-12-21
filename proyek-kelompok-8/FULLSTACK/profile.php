@@ -70,12 +70,13 @@ if (isset($_POST["update-profile"])) {
                     <input type="radio" name="gender" class="gender" id="gender" value="Laki-laki" required>Laki-laki
                     <input type="radio" name="gender" class="gender" id="gender" value="Perempuan" required>Perempuan
                 <?php endif;  ?>
-                <span>
-                    <label>Gambar</label>
-                    <input type="file" name="img" id="img">
-                </span>
-                <span>
-                    <button type="submit" name="update-profile" id="update-profile">Simpan</button>
-                </span>
+            </span>
+            <span>
+                <label>Gambar</label>
+                <input type="file" name="img" id="img">
+            </span>
+            <span>
+                <button type="submit" name="update-profile" id="update-profile">Simpan</button>
+            </span>
         </form>
     </div>
