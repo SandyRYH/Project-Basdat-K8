@@ -11,8 +11,6 @@ if (!(isset($_SESSION["username"]))) {
 if (isset($_POST["pinjam"])) {
     if (pinjamSepeda($_POST) > 0) {
         header("Location: index.php?page=peminjaman");
-    } else {
-        $error = true;
     }
 }
 
@@ -21,9 +19,6 @@ if (isset($_POST["pinjam"])) {
 <div class="pinjam-box">
     <h2>Pinjam Sepeda</h2>
     <form class="pinjam-form" method="post">
-        <?php if (isset($error)) : ?>
-            <p class="error-text">NIM sudah meminjam sepeda, masukan nim lain</p>
-        <?php endif; ?>
         <span>
             <label for="nim">NIM</label>
             <select name="nim" id="nim">

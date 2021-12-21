@@ -204,7 +204,17 @@ function addSepeda()
     $kodeCheck = pg_query($conn, "SELECT * FROM sepeda WHERE kode = '$kode'");
 
     if (pg_fetch_assoc($kodeCheck)) {
+        echo "<script>
+        alert('Masukan kode lain');
+    </script>";
 
+        return false;
+    }
+
+    if ($jumlah <= 0) {
+        echo "<script>
+        alert('Masukan jumlah minimal 1');
+    </script>";
         return false;
     }
 
@@ -223,12 +233,35 @@ function editSepeda()
     $jenis = htmlspecialchars($_POST["jenis"]);
     $jumlah = htmlspecialchars($_POST["jumlah"]);
 
-    $editSepeda = "UPDATE sepeda SET 
-                    jenis = '$jenis', 
-                    tersedia = '$jumlah', 
+    $kodeCheck = pg_query($conn, "SELECT * FROM sepeda WHERE kode = '$kode'");
+
+    $kodeCheck2 = pg_query($conn, "SELECT * FROM peminjaman WHERE kode_sepeda = '$kode'");
+
+    $jumlah2 = pg_num_rows($kodeCheck2);
+
+    if ($jumlah < $jumlah2) {
+        echo "<script>
+        alert('Masukan jumalah yang lebih besar');
+    </script>";
+        return false;
+    }
+
+    $tersedia = $jumlah - $jumlah2;
+
+    $editSepeda = "UPDATE sepeda SET
+                    jenis = '$jenis',  
+                    tersedia = '$tersedia', 
                     jumlah = '$jumlah'
                     WHERE kode = '$kode'";
+
     $result = pg_query($conn, $editSepeda);
+
+    $editPeminjaman = "UPDATE peminjaman SET
+                        jenis_sepeda = '$jenis'
+                        WHERE kode_sepeda = '$kode'";
+
+    pg_query($conn, $editPeminjaman);
+
     return pg_affected_rows($result);
 }
 
@@ -243,13 +276,39 @@ function pinjamSepeda()
     $nimCheck = pg_query($conn, "SELECT * FROM peminjaman WHERE nim = '$nim'");
 
     if (pg_fetch_assoc($nimCheck)) {
+        echo "<script>
+        alert('NIM sudah meminjam, masukan nim lain');
+    </script>";
 
         return false;
     }
 
-    $pinjamSepeda = "INSERT INTO peminjaman(nim, jenis_sepeda, tanggal_meminjam) 
-                    VALUES('$nim', '$jenis', '$tanggalMeminjam')";
+    $jenisCheck = pg_query($conn, "SELECT * FROM sepeda WHERE jenis = '$jenis'");
+    $sepeda = pg_fetch_assoc($jenisCheck);
+    $kode = $sepeda["kode"];
+
+    if ($sepeda["tersedia"] == 0) {
+        echo "<script>
+        alert('Sepeda tidak tersedia');
+    </script>";
+
+        return false;
+    }
+
+    $pinjamSepeda = "INSERT INTO peminjaman(nim, kode_sepeda, jenis_sepeda, tanggal_meminjam) 
+                    VALUES('$nim', '$kode', '$jenis', '$tanggalMeminjam')";
 
     $result = pg_query($conn, $pinjamSepeda);
+
+    $peminjaman = pg_query($conn, "SELECT * FROM peminjaman WHERE jenis_sepeda = '$jenis'");
+
+    $jumlah = pg_num_rows($peminjaman);
+
+    $tersedia = $sepeda["jumlah"] - $jumlah;
+
+    $updateSepeda = "UPDATE sepeda SET tersedia = $tersedia WHERE jenis = '$jenis'";
+
+    pg_query($conn, $updateSepeda);
+
     return pg_affected_rows($result);
 }

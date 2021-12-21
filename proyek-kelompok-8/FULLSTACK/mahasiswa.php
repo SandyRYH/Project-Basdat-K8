@@ -9,6 +9,8 @@ if (isset($_GET["nim"])) {
 
 	pg_query($conn, "DELETE FROM mahasiswa WHERE nim = '$nim'");
 
+	pg_query($conn, "DELETE FROM peminjaman WHERE nim = '$nim'");
+
 	header("Location: index.php?page=mahasiswa");
 }
 

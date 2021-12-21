@@ -9,6 +9,8 @@ if (isset($_GET["kode"])) {
 
 	pg_query($conn, "DELETE FROM sepeda WHERE kode = '$kode'");
 
+	pg_query($conn, "DELETE FROM peminjaman WHERE kode_sepeda = '$kode'");
+
 	header("Location: index.php?page=sepeda");
 }
 

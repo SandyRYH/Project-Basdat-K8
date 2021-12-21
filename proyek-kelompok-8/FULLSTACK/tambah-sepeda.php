@@ -8,8 +8,6 @@ if (!(isset($_SESSION["username"]))) {
 if (isset($_POST["tambah"])) {
     if (addSepeda($_POST > 0)) {
         header("Location: index.php?page=sepeda");
-    } else {
-        $error = true;
     }
 }
 
@@ -18,9 +16,6 @@ if (isset($_POST["tambah"])) {
 <div class="tambah-box">
     <h2>Tambah Sepeda</h2>
     <form class="tambah-form" method="post">
-        <?php if (isset($error)) : ?>
-            <p class="error-text">Masukan kode lain</p>
-        <?php endif; ?>
         <span>
             <label for="kode">Kode</label>
             <input type="text" name="kode" id="kode" required>
